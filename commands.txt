@@ -1,3 +1,8 @@
+-> To set env on ubuntu
+$ export SESSION_SECRET="hello"
+$ printenv
+$ env
+
 -> To use mongo container
 $ docker exec -it mongoContainerId -u "username_from_docker-compose" -p "password_from_docker-compose"
 -> second way

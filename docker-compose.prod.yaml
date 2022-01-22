@@ -10,4 +10,13 @@ services:
         - NODE_ENV=production
     environment:
       - NODE_ENV=production
+      - MONGO_USER=${MONGO_USER} # ${MONGO_USER} means it will pull value from environment values on our ubuntu machine
+      - MONGO_PASSWORD=${MONGO_PASSWORD} # ${MONGO_USER} means it will pull value from environment values on our ubuntu machine
+      - SESSION_SECRET=${SESSION_SECRET} # ${MONGO_USER} means it will pull value from environment values on our ubuntu machine
     command: node index.js
+
+  mongo:
+    # restart: always
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME} # ${MONGO_USER} means it will pull value from environment values on our ubuntu machine
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD} # ${MONGO_USER} means it will pull value from environment values on our ubuntu machine
