@@ -9,6 +9,8 @@ services:
 
   node-app:
     build: .   # here we're building our own custom image, not using from dockerhub
+    image: ah363702/node-app
+    
     # ports:   # as we're using nginx
     #   - "3000-3001:3000"
     environment:
