@@ -1,0 +1,34 @@
+-> To use mongo container
+$ docker exec -it mongoContainerId -u "username_from_docker-compose" -p "password_from_docker-compose"
+-> second way
+$ docker exec -it mongoContainerId bash
+$ mongo -u "username_from_docker-compose" -p "password_from_docker-compose"
+
+-> using docker-compose
+-> for dev
+$ docker-compose -f docker-compose.yaml -f docker-compose.dev.yaml up -d --scale node-app=2 (--build) 
+$ docker-compose -f docker-compose.yaml -f docker-compose.dev.yaml up -d -V (--build)
+$ docker-compose -f docker-compose.yaml -f docker-compose.dev.yaml up -d (--build)
+$ docker-compose -f docker-compose.yaml -f docker-compose.dev.yaml down -v
+-> for prod
+$ docker-compose -f docker-compose.yaml -f docker-compose.prod.yaml up -d --build
+$ docker-compose -f docker-compose.yaml -f docker-compose.prod.yaml down -v
+-> using docker cmd
+$ docker run -v %cd%:/app:ro -v /app/node_modules --env-file ./.env -p 3000:4000 -d --name freecode-node-app freecode-node-app
+
+
+docker run -v %cd%:/app:ro -v /app/node_modules -p 3000:3000 -d --name freecode-node-app freecode-node-app
+
+docker-compose down -v // to delete the anonymous volumns as well
+
+docker run -v C:\Users\DELL\Downloads\local_disk\docker-projects\free-code-camp-node-mongo\:/app -p 3000:3000
+docker run -v %cd%:/app:ro        // ro means read only
+
+-- to prevent node_modules folder from deleting
+docker run -v %cd%:/app -v /app/node_modules -p 3000:3000
+docker run -v %cd%:/app -v /app/node_modules --env PORT=4000 -p 3000:4000
+docker run -v %cd%:/app -v /app/node_modules --env-file ./.env -p 3000:4000
+
+%cd% // %cd% is for cmd to get current working directory
+${pwd} // for powershell to get current working directory
+$(pwd) // for mac and linux

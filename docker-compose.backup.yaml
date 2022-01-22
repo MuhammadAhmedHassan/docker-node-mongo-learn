@@ -1,0 +1,14 @@
+version: '3'
+services:
+  freecode-node-app: # name of container
+    build: . # means build image from our Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./:/app  # to sync file on our host with the container
+      - /app/node_modules # so that if we delete node_modules from host then it don't delete it from container as well
+    environment:
+      - PORT=3000
+    # env_file: # if we've many env variables
+    #   - ./.env
+    

@@ -1,0 +1,25 @@
+version: '3'
+services:
+  # nginx:
+  #   ports:
+  #     - "3000:80"
+  node-app:
+    build: 
+      context: .
+      args:
+        - NODE_ENV=development
+    volumes:
+      - ./:/app  # to sync file on our host with the container
+      - /app/node_modules # so that if we delete node_modules from host then it don't delete it from container as well
+    environment:
+      - NODE_ENV=development
+      - MONGO_USER=root
+      - MONGO_PASSWORD=root
+      - SESSION_SECRET=keyboard_cat
+    command: npm run dev
+  mongo:
+    # restart: always
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=root
+
